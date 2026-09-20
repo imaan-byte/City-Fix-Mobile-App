@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBWZj6Qx_0a3IJDCRb7B3Uc2FG0YWdgqZ0",
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
   authDomain: "city-fix1.firebaseapp.com",
   projectId: "city-fix1",
   storageBucket: "city-fix1.firebasestorage.app",
@@ -17,12 +17,22 @@ const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
 export const auth =
   getApps().length && initializeAuth?.length
-    ? initializeAuth(app, { persistence: getReactNativePersistence(AsyncStorage) })
-    : initializeAuth(app, { persistence: getReactNativePersistence(AsyncStorage) });
+    ? initializeAuth(app, {
+        persistence: getReactNativePersistence(AsyncStorage),
+      })
+    : initializeAuth(app, {
+        persistence: getReactNativePersistence(AsyncStorage),
+      });
 
 export const db = getFirestore(app);
 
-// ✅ IMPORTANT: force exact bucket
-export const storage = getStorage(app, `gs://${firebaseConfig.storageBucket}`);
+// Force exact Firebase Storage bucket
+export const storage = getStorage(
+  app,
+  `gs://${firebaseConfig.storageBucket}`
+);
 
-console.log("Firebase storageBucket (app options):", app.options?.storageBucket);
+console.log(
+  "Firebase storageBucket (app options):",
+  app.options?.storageBucket
+);
