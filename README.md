@@ -1,5 +1,4 @@
-[README(1).md](https://github.com/user-attachments/files/32434999/README.1.md)
-# CityFix
+
 
 CityFix is a mobile application designed to make reporting and managing local infrastructure issues simpler. Citizens can submit problems in their area, while dispatchers, engineers and quality-assurance staff can manage each report through the appropriate stages of resolution.
 
